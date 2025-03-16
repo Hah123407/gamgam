@@ -49,8 +49,8 @@ FOVCircle.Color = Color3.new(255,255,255)
 FOVCircle.Thickness = 1
 FOVCircle.Filled = false
 
---RepStorage.VIPSettings.NoTeamLimits.Value = true
---RepStorage.VIPSettings.EnabledSpectator.Value = true
+RepStorage.VIPSettings.NoTeamLimits.Value = true
+RepStorage.VIPSettings.EnabledSpectator.Value = true
 RepStorage.VIPSettings.NoVoiceCooldown.Value = true
 
 if not Lighting:FindFirstChild('ColorCorrection') then
@@ -271,7 +271,7 @@ local Window = Library:CreateWindow({
 	-- but you do not need to define them unless you are changing them :)
 
 	Title = "AMALGAM [WIP]",
-	Footer = "AMALGAM V1",
+	Footer = "Typical Colors 2 | AMALGAM V1",
 	Icon = 95816097006870,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
