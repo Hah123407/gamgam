@@ -1,13 +1,3 @@
---[[
-    _____      __    __         __               __
-   / __(_)____/ /_  / /_  _____/ /_  ___  ____ _/ /_
-  / /_/ / ___/ __ \/ __ \/ ___/ __ \/ _ \/ __ `/ __/
- / __/ (__  ) / / / / / / /__/ / / /  __/ /_/ / /_
-/_/ /_/____/_/ /_/_/ /_/\___/_/ /_/\___/\__,_/\__/	v2 (Solara)
-4th March 2025
-
-]]
-
 repeat task.wait() until game:IsLoaded()
 
 -- asger keeps breaking his anticheat bypass so enjoy possibly detected script? :steamhappy:
@@ -258,40 +248,47 @@ RemoveShit(RepStorage.Other.ScaryMonsters.Trooper:FindFirstChild("Highlight")) -
 
 RemoveShit = nil
 
-local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/refs/heads/main/'
+local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 
-local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
-local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
-local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-local Options = getgenv().Linoria.Options
-local Toggles = getgenv().Linoria.Toggles
+local Options = Library.Options
+local Toggles = Library.Toggles
 
+Library.ForceCheckbox = false -- Forces AddToggle to AddCheckbox
 Library.ShowToggleFrameInKeybinds = true -- Make toggle keybinds work inside the keybinds UI (aka adds a toggle to the UI). Good for mobile users (Default value = true)
-Library.ShowCustomCursor = true -- Toggles the Linoria cursor globaly (Default value = true)
-Library.NotifySide = "Left" -- Changes the side of the notifications globaly (Left, Right) (Default value = Left)
 
 local Window = Library:CreateWindow({
-	Title = 'FishhCheat v2 (Solara)',
-	Center = true,
-	AutoShow = true,
-	Resizable = true,
+	-- Set Center to true if you want the menu to appear in the center
+	-- Set AutoShow to true if you want the menu to appear when it is created
+	-- Set Resizable to true if you want to have in-game resizable Window
+	-- Set MobileButtonsSide to "Left" or "Right" if you want the ui toggle & lock buttons to be on the left or right side of the window
+	-- Set ShowCustomCursor to false if you don't want to use the Linoria cursor
+	-- NotifySide = Changes the side of the notifications (Left, Right) (Default value = Left)
+	-- Position and Size are also valid options here
+	-- but you do not need to define them unless you are changing them :)
+
+	Title = "AMALGAM [WIP]",
+	Footer = "AMALGAM V1",
+	Icon = 95816097006870,
+	NotifySide = "Right",
 	ShowCustomCursor = true,
-	NotifySide = "Left",
-	TabPadding = 8,
-	MenuFadeTime = 0.2
 })
+
+
 
 local Tabs = {
 	Aim = Window:AddTab('Aim'),
-	Visuals = Window:AddTab('Visuals'),
-    Mods = Window:AddTab('Mods'),
+	Visuals = Window:AddTab('Visuals')
+	Mods = Window:AddTablocal('Mods') 	
 	Automation = Window:AddTab('Automation'),
 	Misc = Window:AddTab('Misc'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
 local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
-GB_Aimbot:AddToggle('AimbotToggle', { Text = 'Aimbot', Default = true, Tooltip = 'Aims at enemies'}):AddKeyPicker('AimbotBind', { Default = 'LeftShift', NoUI = false, Mode = 'Hold', Text = 'Aimkey' })
+GB_Aimbot:AddToggle('AimbotToggle', { Text = 'Aimbot', Default = true, Tooltip = 'Aims at enemies'}):AddKeyPicker('AimbotBind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Aimkey' })
 GB_Aimbot:AddToggle('ProjAimbotToggle', { Text = 'Projectile Aimbot (BETA)', Default = true, Tooltip = '*Attempts* to predict player movement for projectile weapons\nUse hitbox expander for grenade launchers.'})
 GB_Aimbot:AddToggle('Wallcheck', { Text = 'Wallcheck', Default = false, Tooltip = 'Raycasts dont work properly on Solara, toggled off by default.'})
 GB_Aimbot:AddDropdown("TargetPart", {Values = {'Head', 'UpperTorso', 'HumanoidRootPart'}, Default = 3, Multi = false, Text = "Aimbot Part"})
@@ -373,9 +370,9 @@ GB_PlayerMods:AddToggle('BHop', { Text = 'Auto Bunny Hop', Default = true, Toolt
 GB_PlayerMods:AddToggle('NoBHopCap', { Text = 'No Bunny Hop Cap', Default = false, Tooltip = 'Unlock speed cap while bunnyhopping'})
 GB_PlayerMods:AddToggle('NoSlowdown', { Text = 'No slowdown', Default = false, Tooltip = 'No slowdown when revving, scoping etc.'})
 GB_PlayerMods:AddDivider()
-GB_PlayerMods:AddToggle('SpeedMod', { Text = 'Speed modifier', Default = false, Tooltip = 'Modify player speed'})
+GB_PlayerMods:AddToggle('SpeedMod', { Text = 'Speed modifier', Default = false, Tooltip = 'Modify player speed'}):AddKeyPicker('Speedbind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Speedkey' })
 GB_PlayerMods:AddSlider('SpeedAmount', {Text = 'Speed', Default = 500, Min = 100, Max = 2000, Rounding = 2, Compact = true})
-GB_PlayerMods:AddToggle('JumpMod', { Text = 'Jump modifier', Default = false, Tooltip = 'Modify player jump height'})
+GB_PlayerMods:AddToggle('JumpMod', { Text = 'Jump modifier', Default = false, Tooltip = 'Modify player jump height'}):AddKeyPicker('JumpBind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Jumpkey' })
 GB_PlayerMods:AddSlider('JumpAmount', {Text = 'Power', Default = 100, Min = 50, Max = 200, Rounding = 2, Compact = true})
 
 Toggles.BHop:OnChanged(function()
