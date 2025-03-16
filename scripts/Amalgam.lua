@@ -281,8 +281,8 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Aim = Window:AddTab('Aim'),
-	Visuals = Window:AddTab('Visuals')
-	Mods = Window:AddTablocal('Mods') 	
+	Visuals = Window:AddTab('Visuals'),
+	Mods = Window:AddTablocal('Mods'),
 	Automation = Window:AddTab('Automation'),
 	Misc = Window:AddTab('Misc'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
