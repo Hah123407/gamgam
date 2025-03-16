@@ -156,11 +156,15 @@ local Projectiles = { -- pasted from bibulus for convenience
 }
 
 local Killsay = {
-	"You were given time, You were Given orders, And yet i still find This game unprepared for the arrival of the Bibulus Empire"
+	"You were given time, You were Given orders, And yet i still find This game unprepared for the arrival of the Bibulus Empire",
+	"I am {user}. I have never failed to assimilate a chosen planet, no matter its strength. If you choose to oppose me, you will not survive.",
+	"I should do this now--don’t know when I’ll get this chance again. I want to thank you, {victim}.... Really. From the bottom of my heart. It’s not often that I get to cut loose like this. I mean really cut loose like I have here. Usually, there are so many mission parameters. Don’t destroy this. Keep this person alive. But not here—not with this planet. For whatever reason, I don’t really care why, to be honest, I was told--take control, no matter what it takes…take control of the planet. So whatever you did to piss us off--thank you. This has been fun.",
+	"Right now, Fishhvh would be telling you about how the Bibulus Empire would turn this Game into a utopia. She’d tell you you’re a fool to try and prevent this—that we would be helping the people you believe you are protecting from us. I will not tell you any such thing. The truth is, I want you to resist. I’m not here because I want to spread the Bibulus Empire. I’m not here because I believe in one cause or the other, or that I’m fulfilling some kind of honorable duty. I’m here because I enjoy this."
+	
 }
 
 local Deathsay = {
-	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend, They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name, And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... "{User}". I Don't Even Get A Real Name, Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry, But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."	
+	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend, They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name, And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... {User}. I Don't Even Get A Real Name, Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry, But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."	
 }
 
 
