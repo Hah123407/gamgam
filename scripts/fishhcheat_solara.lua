@@ -298,7 +298,7 @@ GB_Aimbot:AddDivider()
 GB_Aimbot:AddToggle('AimbotOnlyFOVVis', { Text = 'FOV Check', Default = false, Tooltip = 'Only aims at enemies within FOV'})
 GB_Aimbot:AddSlider('AimbotFOV', {Text = 'FOV', Default = 60, Min = 1, Max = 90, Rounding = 2, Compact = true})
 GB_Aimbot:AddToggle('AimbotShowFOV', { Text = 'Show FOV Circle', Default = false, Tooltip = 'Draw FOV Circle on screen'})
-GB_Aimbot:AddLabel('Fishhcheat is a free script available only on GitHub and v3rmillion. Do not use any other links!\nMade by FishhHvH', true)
+GB_Aimbot:AddLabel('Amalgam.lua was made by Mad Weed Mechanic and special thank to Vinleo', true)
 --GB_Aimbot:AddDivider() -- FINISH THIS!
 --GB_Aimbot:AddToggle('AimbotLegitMelee', { Text = 'Legit Melee', Default = true, Tooltip = 'Enable distance check for melee'})
 
@@ -371,9 +371,9 @@ GB_PlayerMods:AddToggle('BHop', { Text = 'Auto Bunny Hop', Default = true, Toolt
 GB_PlayerMods:AddToggle('NoBHopCap', { Text = 'No Bunny Hop Cap', Default = false, Tooltip = 'Unlock speed cap while bunnyhopping'})
 GB_PlayerMods:AddToggle('NoSlowdown', { Text = 'No slowdown', Default = false, Tooltip = 'No slowdown when revving, scoping etc.'})
 GB_PlayerMods:AddDivider()
-GB_PlayerMods:AddToggle('SpeedMod', { Text = 'Speed modifier', Default = false, Tooltip = 'Modify player speed'}):AddKeyPicker('Speedbind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Speedkey' })
+GB_PlayerMods:AddToggle('SpeedMod', { Text = 'Speed modifier', Default = false, Tooltip = 'Modify player speed'})
 GB_PlayerMods:AddSlider('SpeedAmount', {Text = 'Speed', Default = 500, Min = 100, Max = 2000, Rounding = 2, Compact = true})
-GB_PlayerMods:AddToggle('JumpMod', { Text = 'Jump modifier', Default = false, Tooltip = 'Modify player jump height'}):AddKeyPicker('JumpBind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Jumpkey' })
+GB_PlayerMods:AddToggle('JumpMod', { Text = 'Jump modifier', Default = false, Tooltip = 'Modify player jump height'})
 GB_PlayerMods:AddSlider('JumpAmount', {Text = 'Power', Default = 100, Min = 50, Max = 200, Rounding = 2, Compact = true})
 
 Toggles.BHop:OnChanged(function()
