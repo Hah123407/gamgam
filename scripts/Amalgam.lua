@@ -237,7 +237,7 @@ local Window = Library:CreateWindow({
 
 	Title = "AMALGAM [WIP]",
 	Footer = "Typical Colors 2 | AMALGAM V1",
-	Icon = 95816097006870,
+	Icon = 12765219303,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
 })
