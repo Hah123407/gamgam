@@ -391,7 +391,7 @@ GB_WeaponMods:AddToggle('AlwaysBackstab', { Text = 'Always Backstab', Default = 
 GB_WeaponMods:AddToggle('NoSpread', { Text = 'Reduced Spread', Default = false, Tooltip = 'Significantly reduced spread for most weapons'})
 GB_WeaponMods:AddToggle('InfAmmo', { Text = 'Infinite Ammo', Default = false, Tooltip = 'Infinite ammo on all weapons'})
 GB_WeaponMods:AddToggle('InfCloak', { Text = 'Infinite Cloak', Default = false, Tooltip = 'Infinite cloak for Agent'})
-GB_WeaponMods:AddToggle('InfCharge', { Text = 'Infinite Shield Charge', Default = false, Tooltip = 'Infinite charge for Annihilator shields', Default = true, Disabled = false, Visible = true, Risky = false}) -- Possibly detected
+GB_WeaponMods:AddToggle('InfCharge', { Text = 'Infinite Shield Charge', Default = false, Tooltip = 'Infinite charge for Annihilator shields', Default = false, Disabled = false, Visible = true, Risky = true}) -- Possibly detected
 
 Toggles.AlwaysBackstab:OnChanged(function() -- Always Backstab
     if Toggles.AlwaysBackstab.Value then
@@ -552,7 +552,7 @@ GB_Removals:AddToggle('NoSniperScope', {Text = 'No Rifle Scope', Default = false
 GB_Removals:AddToggle('NoSniperBeam', {Text = 'No Rifle Beam', Default = false, Tooltip = "Block the remote for the rifle's beam (serversided)"})
 GB_Removals:AddToggle('NoUndisguise', {Text = 'No Undisguising After Attack', Default = false, Tooltip = 'Block the remote for undisguising'})
 GB_Removals:AddToggle('NoSelfDamage', {Text = 'No Self Melee Damage', Default = false, Tooltip = 'No more self damage for certain melees'})
---GB_Removals:AddToggle('InstantRespawn', {Text = 'No Respawn Cooldown', Default = false, Tooltip = 'aka Instant Respawn'}) -- Detected probably?
+GB_Removals:AddToggle('InstantRespawn', {Text = 'No Respawn Cooldown', Default = false, Tooltip = 'aka Instant Respawn', Default = false, Disabled = false, Visible = true, Risky = true}) -- Detected probably?
 
 Toggles.NoSniperScope:OnChanged(function()
 	if Toggles.NoSniperScope.Value then
@@ -659,9 +659,9 @@ LegacyLocalVariables.died:GetPropertyChangedSignal('Value'):Connect(function()
 		if Toggles.OneLife.Value then
 			game:GetService("TeleportService"):Teleport(16167003515, LocalPlayer) -- lmao
 		end
-		--if Toggles.InstantRespawn.Value then -- Instant Respawn
-			--RepStorage.Events.LoadCharacter:FireServer()
-		--end
+		if Toggles.InstantRespawn.Value then -- Instant Respawn
+			RepStorage.Events.LoadCharacter:FireServer()
+		end
 		if Toggles.Deathsay.Value then -- Deathsay
 			RepStorage.Events.ChatMessage:FireServer(Deathsay[math.random(1, #Deathsay)], false)
 		end
@@ -739,7 +739,7 @@ SaveManager:IgnoreThemeSettings()
 
 SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
-ThemeManager:SetFolder('FishhCheat_v2')
+ThemeManager:SetFolder('AMALGAM_WIP')
 SaveManager:SetFolder('FishhCheat_v2/Solara/TC2')
 
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
