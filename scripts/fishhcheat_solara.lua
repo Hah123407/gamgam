@@ -1,3 +1,4 @@
+
 repeat task.wait() until game:IsLoaded()
 
 -- asger keeps breaking his anticheat bypass so enjoy possibly detected script? :steamhappy:
@@ -712,52 +713,13 @@ task.spawn(function()
 	end
 end)
 
-Library:SetWatermarkVisibility(true)
 
-local FrameTimer = tick()
-local FrameCounter = 0;
-local FPS = 60;
-
-local Stats = game:GetService('Stats')
-
-local WatermarkConnection = RunService.RenderStepped:Connect(function()
-	FrameCounter = FrameCounter + 1; -- cuz of moonsec being retarded
-	Ping = Stats.Network.ServerStatsItem['Data Ping']:GetValue()
-
-	if (tick() - FrameTimer) >= 1 then
-		FPS = FrameCounter;
-		FrameTimer = tick();
-		FrameCounter = 0;
-	end;
-	if WatermarkVisible then
-		Library:SetWatermark(('FishhCheat v2 | %s fps | %s ms'):format(
-			math.floor(FPS),
-			math.floor(Ping)
-		));
-	end
-end);
-
-Library.KeybindFrame.Visible = true;
-
-Library:OnUnload(function()
-	WatermarkConnection:Disconnect()
-	Library.Unloaded = true
-end)
 
 -- UI Settings
 local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
 MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
-MenuGroup:AddToggle("ShowWatermark", {
-	Text = "Show Cheat Watermark",
-	Default = true, 
-	Tooltip = "Shows the cheat watermark. Duh", 
-	Callback = function(Value)
-		WatermarkVisible = Value
-		Library:SetWatermarkVisibility(Value)
-	end
-})
 MenuGroup:AddToggle("ShowKeybinds", {
 	Text = "Show Keybinds Menu",
 	Default = true, 
