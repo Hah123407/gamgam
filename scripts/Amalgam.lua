@@ -158,13 +158,17 @@ local Projectiles = { -- pasted from bibulus for convenience
 local Killsay = {
 	"You were given time, You were Given orders, And yet i still find This game unprepared for the arrival of the Bibulus Empire",
 	"I am {user}. I have never failed to assimilate a chosen planet, no matter its strength. If you choose to oppose me, you will not survive.",
-	"I should do this now--don’t know when I’ll get this chance again. I want to thank you, {victim}.... Really. From the bottom of my heart. It’s not often that I get to cut loose like this. I mean really cut loose like I have here. Usually, there are so many mission parameters. Don’t destroy this. Keep this person alive. But not here—not with this planet. For whatever reason, I don’t really care why, to be honest, I was told--take control, no matter what it takes…take control of the planet. So whatever you did to piss us off--thank you. This has been fun.",
-	"Right now, Fishhvh would be telling you about how the Bibulus Empire would turn this Game into a utopia. She’d tell you you’re a fool to try and prevent this—that we would be helping the people you believe you are protecting from us. I will not tell you any such thing. The truth is, I want you to resist. I’m not here because I want to spread the Bibulus Empire. I’m not here because I believe in one cause or the other, or that I’m fulfilling some kind of honorable duty. I’m here because I enjoy this."
+	"I should do this now--don’t know when I’ll get this chance again. I want to thank you, {victim}.... Really. From the bottom of my heart. It’s not often that I get to cut loose like this. I mean really cut loose like I have here. Usually, there are so many mission parameters. Don’t destroy this. Keep this person alive. So whatever you did to piss us off--thank you. This has been fun.",
+	"Right now, Fishhvh would be telling you about how the Bibulus Empire would turn this Game into a utopia. he’d tell you you’re a fool to try and prevent this—that we would be helping the people you believe you are protecting from us. I will not tell you any such thing. The truth is, I want to spread the Bibulus Empire."
 	
 }
 
 local Deathsay = {
-	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend, They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name, And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... {User}. I Don't Even Get A Real Name, Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry, But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."	
+	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend" 
+	"They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name," 
+	"And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... {User}. I Don't Even Get A Real Name," 
+	"Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry," 
+	"But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."	
 }
 
 
@@ -678,36 +682,90 @@ end)
 
 
 -- UI Settings
-local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
+local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu")
 
-MenuGroup:AddButton('Unload', function() Library:Unload() end)
-MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
-MenuGroup:AddToggle("ShowKeybinds", {
-	Text = "Show Keybinds Menu",
-	Default = true, 
-	Tooltip = "Shows a menu with all keybinds", 
-	Callback = function(Value)
-		Library.KeybindFrame.Visible = Value
-	end
+MenuGroup:AddToggle("KeybindMenuOpen", {
+	Default = Library.KeybindFrame.Visible,
+	Text = "Open Keybind Menu",
+	Callback = function(value)
+		Library.KeybindFrame.Visible = value
+	end,
 })
+MenuGroup:AddToggle("ShowCustomCursor", {
+	Text = "Custom Cursor",
+	Default = true,
+	Callback = function(Value)
+		Library.ShowCustomCursor = Value
+	end,
+})
+MenuGroup:AddDropdown("NotificationSide", {
+	Values = { "Left", "Right" },
+	Default = "Right",
 
+	Text = "Notification Side",
 
-Library.ToggleKeybind = Options.MenuKeybind
+	Callback = function(Value)
+		Library:SetNotifySide(Value)
+	end,
+})
+MenuGroup:AddDropdown("DPIDropdown", {
+	Values = { "50%", "75%", "100%", "125%", "150%", "175%", "200%" },
+	Default = "100%",
 
+	Text = "DPI Scale",
+
+	Callback = function(Value)
+		Value = Value:gsub("%%", "")
+		local DPI = tonumber(Value)
+
+		Library:SetDPIScale(DPI)
+	end,
+})
+MenuGroup:AddDivider()
+MenuGroup:AddLabel("Menu bind")
+	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+
+MenuGroup:AddButton("Unload", function()
+	Library:Unload()
+end)
+
+Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
+
+-- Addons:
+-- SaveManager (Allows you to have a configuration system)
+-- ThemeManager (Allows you to have a menu theme system)
+
+-- Hand the library over to our managers
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
 
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
 SaveManager:IgnoreThemeSettings()
 
-SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
+-- Adds our MenuKeybind to the ignore list
+-- (do you want each config to have a different menu key? probably not.)
+SaveManager:SetIgnoreIndexes({ "MenuKeybind" })
 
-ThemeManager:SetFolder('AMALGAM_WIP')
-SaveManager:SetFolder('FishhCheat_v2/Solara/TC2')
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+ThemeManager:SetFolder("MyScriptHub")
+SaveManager:SetFolder("MyScriptHub/specific-game")
+SaveManager:SetSubFolder("specific-place") -- if the game has multiple places inside of it (for example: DOORS)
+-- you can use this to save configs for those places separately
+-- The path in this script would be: MyScriptHub/specific-game/settings/specific-place
+-- [ This is optional ]
 
-SaveManager:BuildConfigSection(Tabs['UI Settings'])
+-- Builds our config menu on the right side of our tab
+SaveManager:BuildConfigSection(Tabs["UI Settings"])
 
-ThemeManager:ApplyToTab(Tabs['UI Settings'])
+-- Builds our theme menu (with plenty of built in themes) on the left side
+-- NOTE: you can also call ThemeManager:ApplyToGroupbox to add it to a specific groupbox
+ThemeManager:ApplyToTab(Tabs["UI Settings"])
 
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
 
 -- CODE
