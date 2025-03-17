@@ -720,13 +720,6 @@ MenuGroup:AddDropdown("DPIDropdown", {
 		Library:SetDPIScale(DPI)
 	end,
 })
-MenuGroup:AddDivider()
-MenuGroup:AddLabel("Menu bind")
-	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
-
-MenuGroup:AddButton("Unload", function()
-	Library:Unload()
-end)
 
 Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
 
