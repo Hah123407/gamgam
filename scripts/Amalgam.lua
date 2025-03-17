@@ -683,6 +683,49 @@ end)
 -- UI Settings
 local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu")
 
+MenuGroup:AddDropdown("DPIDropdown", {
+	Values = { "50%", "75%", "100%", "125%", "150%", "175%", "200%" },
+	Default = "100%",
+
+	Text = "DPI Scale",
+
+	Callback = function(Value)
+		Value = Value:gsub("%%", "")
+		local DPI = tonumber(Value)
+
+		Library:SetDPIScale(DPI)
+	end,
+})
+
+MenuGroup:AddButton('Unload', function() Library:Unload() end)
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
+MenuGroup:AddToggle("ShowKeybinds", {
+	Text = "Show Keybinds Menu",
+	Default = true, 
+	Tooltip = "Shows a menu with all keybinds", 
+	Callback = function(Value)
+		Library.KeybindFrame.Visible = Value
+	end
+})
+
+
+Library.ToggleKeybind = Options.MenuKeybind
+
+ThemeManager:SetLibrary(Library)
+SaveManager:SetLibrary(Library)
+
+SaveManager:IgnoreThemeSettings()
+
+SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
+
+ThemeManager:SetFolder('FishhCheat_v2')
+SaveManager:SetFolder('FishhCheat_v2/Solara/TC2')
+
+SaveManager:BuildConfigSection(Tabs['UI Settings'])
+
+ThemeManager:ApplyToTab(Tabs['UI Settings'])
+
+SaveManager:LoadAutoloadConfig()
 
 
 -- CODE
