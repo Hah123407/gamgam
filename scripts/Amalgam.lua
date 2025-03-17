@@ -682,6 +682,7 @@ end)
 
 
 -- UI Settings
+
 local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu")
 
 MenuGroup:AddToggle("KeybindMenuOpen", {
@@ -722,12 +723,14 @@ MenuGroup:AddDropdown("DPIDropdown", {
 	end,
 })
 MenuGroup:AddDivider()
-MenuGroup:AddLabel("Menu bind")
-	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
-
-MenuGroup:AddButton("Unload", function()
-	Library:Unload()
-end)
+MenuGroup:AddToggle("ShowKeybinds", {
+	Text = "Show Keybinds Menu",
+	Default = true, 
+	Tooltip = "Shows a menu with all keybinds", 
+	Callback = function(Value)
+		Library.KeybindFrame.Visible = Value
+	end
+})
 
 Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
 
@@ -750,8 +753,8 @@ SaveManager:SetIgnoreIndexes({ "MenuKeybind" })
 -- use case for doing it this way:
 -- a script hub could have themes in a global folder
 -- and game configs in a separate folder per game
-ThemeManager:SetFolder("MyScriptHub")
-SaveManager:SetFolder("MyScriptHub/specific-game")
+ThemeManager:SetFolder("Amalgam")
+SaveManager:SetFolder("Amalgam/TypicalColors2")
 SaveManager:SetSubFolder("specific-place") -- if the game has multiple places inside of it (for example: DOORS)
 -- you can use this to save configs for those places separately
 -- The path in this script would be: MyScriptHub/specific-game/settings/specific-place
