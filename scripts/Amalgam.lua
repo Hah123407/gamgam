@@ -722,21 +722,21 @@ MenuGroup:AddDropdown("DPIDropdown", {
 		Library:SetDPIScale(DPI)
 	end,
 })
-MenuGroup:AddDivider()
 
-MenuGroup:AddDivider()
-MenuGroup:AddLabel("Menu bind")
-	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
-
-MenuGroup:AddButton("Unload", function()
-	Library:Unload()
-end)
+MenuGroup:AddToggle("ShowKeybinds", {
+	Text = "Show Keybinds Menu",
+	Default = true, 
+	Tooltip = "Shows a menu with all keybinds", 
+	Callback = function(Value)
+		Library.KeybindFrame.Visible = Value
+	end
+})
 
 Library.ToggleKeybind = Options.MenuKeybind 
 
 -- Addons:
--- SaveManager (Allows you to have a configuration system)
--- ThemeManager (Allows you to have a menu theme system)
+SaveManager (Allows you to have a configuration system)
+ThemeManager (Allows you to have a menu theme system)
 
 -- Hand the library over to our managers
 ThemeManager:SetLibrary(Library)
