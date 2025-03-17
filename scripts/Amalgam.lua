@@ -680,10 +680,8 @@ task.spawn(function()
 end)
 
 
-
 -- UI Settings
-
-local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu")
+local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 
 MenuGroup:AddToggle("KeybindMenuOpen", {
 	Default = Library.KeybindFrame.Visible,
@@ -721,7 +719,8 @@ MenuGroup:AddDropdown("DPIDropdown", {
 
 		Library:SetDPIScale(DPI)
 	end,
-})
+}) 
+
 
 MenuGroup:AddToggle("ShowKeybinds", {
 	Text = "Show Keybinds Menu",
@@ -732,44 +731,28 @@ MenuGroup:AddToggle("ShowKeybinds", {
 	end
 })
 
-Library.ToggleKeybind = Options.MenuKeybind 
 
--- Addons:
-SaveManager (Allows you to have a configuration system)
-ThemeManager (Allows you to have a menu theme system)
+Library.ToggleKeybind = Options.MenuKeybind
 
 -- Hand the library over to our managers
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
 
--- Ignore keys that are used by ThemeManager.
--- (we dont want configs to save themes, do we?)
 SaveManager:IgnoreThemeSettings()
 
--- Adds our MenuKeybind to the ignore list
--- (do you want each config to have a different menu key? probably not.)
-SaveManager:SetIgnoreIndexes({ "MenuKeybind" })
 
--- use case for doing it this way:
--- a script hub could have themes in a global folder
--- and game configs in a separate folder per game
-ThemeManager:SetFolder("Amalgam")
-SaveManager:SetFolder("Amalgam/TypicalColors2")
-SaveManager:SetSubFolder("specific-place") -- if the game has multiple places inside of it (for example: DOORS)
--- you can use this to save configs for those places separately
--- The path in this script would be: MyScriptHub/specific-game/settings/specific-place
--- [ This is optional ]
+SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
--- Builds our config menu on the right side of our tab
-SaveManager:BuildConfigSection(Tabs["UI Settings"])
+ThemeManager:SetFolder('Amalgam_v1')
+SaveManager:SetFolder('Amalgam_v1/Solara/TC2')
 
--- Builds our theme menu (with plenty of built in themes) on the left side
--- NOTE: you can also call ThemeManager:ApplyToGroupbox to add it to a specific groupbox
-ThemeManager:ApplyToTab(Tabs["UI Settings"])
+SaveManager:BuildConfigSection(Tabs['UI Settings'])
 
--- You can use the SaveManager:LoadAutoloadConfig() to load a config
--- which has been marked to be one that auto loads!
+ThemeManager:ApplyToTab(Tabs['UI Settings'])
+
 SaveManager:LoadAutoloadConfig()
+
+
 
 -- CODE
 
