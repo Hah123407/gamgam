@@ -164,11 +164,11 @@ local Killsay = {
 }
 
 local Deathsay = {
-	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend" 
-	"They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name," 
-	"And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... {User}. I Don't Even Get A Real Name," 
-	"Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry," 
-	"But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."	
+	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend", 
+	"They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name,", 
+	"And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... {User}. I Don't Even Get A Real Name,", 
+	"Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry,", 
+	"But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."
 }
 
 
