@@ -249,12 +249,13 @@ local Tabs = {
 	Aim = Window:AddTab('Aim'),
 	Visuals = Window:AddTab('Visuals'),
     Mods = Window:AddTab('Mods'),
-	Automation = Window:AddTab('Automation'),
 	Misc = Window:AddTab('Misc'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
-local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
+local GB_Aimbot = Tabs.Aim:AddLeftTabbox('Aimbot')
+
+local GB_Aimbot = TabBox:AddTab("Aim")
 GB_Aimbot:AddToggle('AimbotToggle', { Text = 'Aimbot', Default = true, Tooltip = 'Aims at enemies'}):AddKeyPicker('AimbotBind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Aimkey' })
 GB_Aimbot:AddToggle('ProjAimbotToggle', { Text = 'Projectile Aimbot (BETA)', Default = true, Tooltip = '*Attempts* to predict player movement for projectile weapons\nUse hitbox expander for grenade launchers.'})
 GB_Aimbot:AddToggle('Wallcheck', { Text = 'Wallcheck', Default = false, Tooltip = 'Raycasts dont work properly on Solara, toggled off by default.'})
@@ -267,6 +268,16 @@ GB_Aimbot:AddToggle('AimbotShowFOV', { Text = 'Show FOV Circle', Default = false
 GB_Aimbot:AddLabel('Amalgam.lua was made by Mad Weed Mechanic and special thank to Vinleo', true)
 --GB_Aimbot:AddDivider() -- FINISH THIS!
 --GB_Aimbot:AddToggle('AimbotLegitMelee', { Text = 'Legit Melee', Default = true, Tooltip = 'Enable distance check for melee'})
+
+local GB_HVH = TabBox:AddTab("HVH")
+
+GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
+GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
+GB_HVH:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
+GB_HVH:AddDivider()
+GB_HVH:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
+GB_HVH:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
+GB_HVH:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
 
 local GB_Hitbox = Tabs.Aim:AddRightGroupbox('Hitbox')
 GB_Hitbox:AddToggle('HBEToggle', { Text = 'Hitbox Expander', Default = false, Tooltip = 'Toggle hitbox expanding'}):AddKeyPicker('HBEBind', { Default = 'None', NoUI = false, Mode = 'Always', Text = 'HBE Key' })
@@ -358,6 +369,8 @@ GB_WeaponMods:AddToggle('NoSpread', { Text = 'Reduced Spread', Default = false, 
 GB_WeaponMods:AddToggle('InfAmmo', { Text = 'Infinite Ammo', Default = false, Tooltip = 'Infinite ammo on all weapons'})
 GB_WeaponMods:AddToggle('InfCloak', { Text = 'Infinite Cloak', Default = false, Tooltip = 'Infinite cloak for Agent'})
 GB_WeaponMods:AddToggle('InfCharge', { Text = 'Infinite Shield Charge', Default = false, Tooltip = 'Infinite charge for Annihilator shields', Default = false, Disabled = false, Visible = true, Risky = true}) -- Possibly detected
+GB_WeaponMods:AddToggle('AutoAirblast', { Text = 'Auto Airblast', Default = false, Tooltip = 'Automatically airblast projectiles'})
+GB_WeaponMods:AddToggle('AutoAirblastExt', { Text = 'Extinguish teammates', Default = false, Tooltip = 'Auto Airblast will extinguish teammates'})
 
 Toggles.AlwaysBackstab:OnChanged(function() -- Always Backstab
     if Toggles.AlwaysBackstab.Value then
@@ -431,40 +444,7 @@ LegacyLocalVariables.Held2:GetPropertyChangedSignal("Value"):Connect(function() 
 	end
 end)
 
-local GB_Auto = Tabs.Automation:AddLeftGroupbox('Automation') 
-GB_Auto:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
-GB_Auto:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
-GB_Auto:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
-GB_Auto:AddDivider()
-GB_Auto:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
-GB_Auto:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
-GB_Auto:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
-GB_Auto:AddDivider()
-GB_Auto:AddToggle('AutoAirblast', { Text = 'Auto Airblast', Default = false, Tooltip = 'Automatically airblast projectiles'})
-GB_Auto:AddToggle('AutoAirblastExt', { Text = 'Extinguish teammates', Default = false, Tooltip = 'Auto Airblast will extinguish teammates'})
-GB_Auto:AddDivider()
-GB_Auto:AddButton('Spawn LVL 3 Sentry', function()
-	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
-		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Sentry", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
-	end	
-end)
-GB_Auto:AddButton('Spawn LVL 3 Dispenser', function()
-	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
-		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Dispenser", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
-	end	
-end)
-GB_Auto:AddButton('Spawn LVL 3 TP Entrance', function()
-	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
-		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Teleporter Entrance", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
-	end	
-end)
-GB_Auto:AddButton('Spawn LVL 3 TP Exit', function()
-	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
-		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Teleporter Exit", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
-	end	
-end)
-
-local GB_Spam = Tabs.Automation:AddRightGroupbox('Spam')
+local GB_Spam = Tabs.Automation:AddLeftGroupbox('Spam')
 GB_Spam:AddToggle('ChatSpamToggle', { Text = 'Chat Spam', Default = false, Tooltip = 'Spam random shit in chat lol'})
 GB_Spam:AddSlider('ChatSpamDelay', {Text = 'Delay (s)', Default = 5, Min = 2, Max = 15, Rounding = 2, Compact = true})
 GB_Spam:AddToggle('Killsay', { Text = 'Killsay', Default = false, Tooltip = 'Send a chat message for each kill'})
@@ -519,6 +499,26 @@ GB_Removals:AddToggle('NoSniperBeam', {Text = 'No Rifle Beam', Default = false, 
 GB_Removals:AddToggle('NoUndisguise', {Text = 'No Undisguising After Attack', Default = false, Tooltip = 'Block the remote for undisguising'})
 GB_Removals:AddToggle('NoSelfDamage', {Text = 'No Self Melee Damage', Default = false, Tooltip = 'No more self damage for certain melees'})
 GB_Removals:AddToggle('InstantRespawn', {Text = 'No Respawn Cooldown', Default = false, Tooltip = 'aka Instant Respawn', Default = false, Disabled = false, Visible = true, Risky = true}) -- Detected probably?
+GB_Removals:AddButton('Spawn LVL 3 Sentry', function()
+	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
+		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Sentry", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
+	end	
+end)
+GB_Removals:AddButton('Spawn LVL 3 Dispenser', function()
+	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
+		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Dispenser", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
+	end	
+end)
+GB_Removals:AddButton('Spawn LVL 3 TP Entrance', function()
+	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
+		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Teleporter Entrance", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
+	end	
+end)
+GB_Removals:AddButton('Spawn LVL 3 TP Exit', function()
+	if not LegacyLocalVariables.died.Value and LocalPlayer.Status.Class.Value == "Mechanic" then
+		RepStorage.Events.DeployBuilding:FireServer(LocalPlayer.Character.LowerTorso.CFrame + Vector3.new(0, -2, 0), "Teleporter Exit", true, 3, 216, 200, 200, 0, 0, LocalPlayer.Status.Team.Value)
+	end	
+end)
 
 Toggles.NoSniperScope:OnChanged(function()
 	if Toggles.NoSniperScope.Value then
