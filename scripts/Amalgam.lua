@@ -738,8 +738,8 @@ SaveManager:IgnoreThemeSettings()
 
 SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
-ThemeManager:SetFolder('FishhCheat_v2')
-SaveManager:SetFolder('FishhCheat_v2/Solara/TC2')
+ThemeManager:SetFolder('Amalgam_v1')
+SaveManager:SetFolder('Amalgam_v1/Krnl/TC2')
 
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
 
