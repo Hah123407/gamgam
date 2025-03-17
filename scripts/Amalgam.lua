@@ -723,16 +723,16 @@ MenuGroup:AddDropdown("DPIDropdown", {
 	end,
 })
 MenuGroup:AddDivider()
-MenuGroup:AddToggle("ShowKeybinds", {
-	Text = "Show Keybinds Menu",
-	Default = true, 
-	Tooltip = "Shows a menu with all keybinds", 
-	Callback = function(Value)
-		Library.KeybindFrame.Visible = Value
-	end
-})
 
-Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
+MenuGroup:AddDivider()
+MenuGroup:AddLabel("Menu bind")
+	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+
+MenuGroup:AddButton("Unload", function()
+	Library:Unload()
+end)
+
+Library.ToggleKeybind = Options.MenuKeybind 
 
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
