@@ -681,7 +681,7 @@ end)
 
 
 -- UI Settings
-local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
+local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu")
 
 MenuGroup:AddToggle("KeybindMenuOpen", {
 	Default = Library.KeybindFrame.Visible,
@@ -719,27 +719,21 @@ MenuGroup:AddDropdown("DPIDropdown", {
 
 		Library:SetDPIScale(DPI)
 	end,
-}) 
-
-
-MenuGroup:AddToggle("ShowKeybinds", {
-	Text = "Show Keybinds Menu",
-	Default = true, 
-	Tooltip = "Shows a menu with all keybinds", 
-	Callback = function(Value)
-		Library.KeybindFrame.Visible = Value
-	end
 })
+MenuGroup:AddDivider()
+MenuGroup:AddLabel("Menu bind")
+	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
 
+MenuGroup:AddButton("Unload", function()
+	Library:Unload()
+end)
 
-Library.ToggleKeybind = Options.MenuKeybind
+Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
 
--- Hand the library over to our managers
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
 
 SaveManager:IgnoreThemeSettings()
-
 
 SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
