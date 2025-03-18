@@ -247,15 +247,17 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Aim = Window:AddTab('Aim'),
+	Hvh = Window:AddTab('HVH'),
 	Visuals = Window:AddTab('Visuals'),
-    Mods = Window:AddTab('Mods'),
+        Mods = Window:AddTab('Mods'),
 	Misc = Window:AddTab('Misc'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
-local GB_Aimbot = Tabs.Aim:AddLeftTabbox('Aimbot')
+local GB_Aimbot = Tabs.Aim:AddLefGroupbox('Aimbot')
 
 local GB_Aimbot = TabBox:AddTab("Aim")
+GB_Aimbot:AddLabel('in order for the aimbot to work YOU have to use the keybind, not the toggle')
 GB_Aimbot:AddToggle('AimbotToggle', { Text = 'Aimbot', Default = true, Tooltip = 'Aims at enemies'}):AddKeyPicker('AimbotBind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Aimkey' })
 GB_Aimbot:AddToggle('ProjAimbotToggle', { Text = 'Projectile Aimbot (BETA)', Default = true, Tooltip = '*Attempts* to predict player movement for projectile weapons\nUse hitbox expander for grenade launchers.'})
 GB_Aimbot:AddToggle('Wallcheck', { Text = 'Wallcheck', Default = false, Tooltip = 'Raycasts dont work properly on Solara, toggled off by default.'})
@@ -269,16 +271,6 @@ GB_Aimbot:AddLabel('Amalgam.lua was made by Mad Weed Mechanic and special thank 
 --GB_Aimbot:AddDivider() -- FINISH THIS!
 --GB_Aimbot:AddToggle('AimbotLegitMelee', { Text = 'Legit Melee', Default = true, Tooltip = 'Enable distance check for melee'})
 
-local GB_HVH = TabBox:AddTab("HVH")
-
-GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
-GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
-GB_HVH:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
-GB_HVH:AddDivider()
-GB_HVH:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
-GB_HVH:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
-GB_HVH:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
-
 local GB_Hitbox = Tabs.Aim:AddRightGroupbox('Hitbox')
 GB_Hitbox:AddToggle('HBEToggle', { Text = 'Hitbox Expander', Default = false, Tooltip = 'Toggle hitbox expanding'}):AddKeyPicker('HBEBind', { Default = 'None', NoUI = false, Mode = 'Always', Text = 'HBE Key' })
 GB_Hitbox:AddDivider()
@@ -291,6 +283,15 @@ local GB_Ignore = Tabs.Aim:AddRightGroupbox('Ignore')
 GB_Ignore:AddToggle('AimIgnoreInvis', {Text = 'Ignore Invisible', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 GB_Ignore:AddToggle('AimIgnoreFriends', {Text = 'Ignore Friends/Ignored', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 
+local GB_HVH = Tabs.Hvh:AddLeftGroupbox('HVH')
+GB_HVH:AddLabel('sory but no double tap :(')
+GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
+GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
+GB_HVH:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
+GB_HVH:AddDivider()
+GB_HVH:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
+GB_HVH:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
+GB_HVH:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
 
 local GB_ESP = Tabs.Visuals:AddLeftGroupbox('ESP')
 local GB_View = Tabs.Visuals:AddRightGroupbox('View')
