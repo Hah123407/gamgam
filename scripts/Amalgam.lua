@@ -249,7 +249,7 @@ local Tabs = {
 	Aim = Window:AddTab('Aim'),
 	Hvh = Window:AddTab('HVH'),
 	Visuals = Window:AddTab('Visuals'),
-        Mods = Window:AddTab('Mods'),
+Mods = Window:AddTab('Mods'),
 	Misc = Window:AddTab('Misc'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
