@@ -282,7 +282,7 @@ local GB_Ignore = Tabs.Aim:AddRightGroupbox('Ignore')
 GB_Ignore:AddToggle('AimIgnoreInvis', {Text = 'Ignore Invisible', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 GB_Ignore:AddToggle('AimIgnoreFriends', {Text = 'Ignore Friends/Ignored', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 
-local GB_HVH = Tabs.Hvh:AddLeftGroupbox('HVH')
+local GB_HVH = Tabs.HVH:AddLeftGroupbox('HVH')
 GB_HVH:AddLabel('sory but no double tap')
 GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
 GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
