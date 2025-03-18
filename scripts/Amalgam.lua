@@ -250,7 +250,7 @@ local Tabs = {
 	Hvh = Window:AddTab('HVH'),
 	Visuals = Window:AddTab('Visuals'),
 	Automation = Window:AddTab('Automation'),
-Mods = Window:AddTab('Mods'),
+   Mods = Window:AddTab('Mods'),
 	Misc = Window:AddTab('Misc'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
@@ -283,7 +283,7 @@ GB_Ignore:AddToggle('AimIgnoreInvis', {Text = 'Ignore Invisible', Default = true
 GB_Ignore:AddToggle('AimIgnoreFriends', {Text = 'Ignore Friends/Ignored', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 
 local GB_HVH = Tabs.Hvh:AddLeftGroupbox('HVH')
-GB_HVH:AddLabel('sory but no double tap :(')
+GB_HVH:AddLabel('sory but no double tap')
 GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
 GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
 GB_HVH:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
