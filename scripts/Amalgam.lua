@@ -720,13 +720,12 @@ MenuGroup:AddDropdown("DPIDropdown", {
 
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
 MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
-MenuGroup:AddToggle("ShowKeybinds", {
-	Text = "Show Keybinds Menu",
-	Default = true, 
-	Tooltip = "Shows a menu with all keybinds", 
-	Callback = function(Value)
-		Library.KeybindFrame.Visible = Value
-	end
+MenuGroup:AddToggle("KeybindMenuOpen", {
+	Default = Library.KeybindFrame.Visible,
+	Text = "Open Keybind Menu",
+	Callback = function(value)
+		Library.KeybindFrame.Visible = value
+	end,
 })
 
 
