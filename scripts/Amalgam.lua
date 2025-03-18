@@ -256,7 +256,8 @@ local Tabs = {
 }
 
 local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
-GB_Aimbot:AddLabel('in order for the aimbot to work YOU have to use the keybind, not the toggle')
+GB_Aimbot:AddLabel('in order for the')
+GB_Aimbot:AddLabel('aimbot to work YOU have to use the keybind, not the toggle') 
 GB_Aimbot:AddToggle('AimbotToggle', { Text = 'Aimbot', Default = true, Tooltip = 'Aims at enemies'}):AddKeyPicker('AimbotBind', { Default = 'Delete', NoUI = false, Mode = 'Hold', Text = 'Aimkey' })
 GB_Aimbot:AddToggle('ProjAimbotToggle', { Text = 'Projectile Aimbot (BETA)', Default = true, Tooltip = '*Attempts* to predict player movement for projectile weapons\nUse hitbox expander for grenade launchers.'})
 GB_Aimbot:AddToggle('Wallcheck', { Text = 'Wallcheck', Default = false, Tooltip = 'Raycasts dont work properly on Solara, toggled off by default.'})
