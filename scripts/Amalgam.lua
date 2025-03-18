@@ -254,7 +254,7 @@ Mods = Window:AddTab('Mods'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
-local GB_Aimbot = Tabs.Aim:AddLefGroupbox('Aimbot')
+local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
 
 local GB_Aimbot = TabBox:AddTab("Aim")
 GB_Aimbot:AddLabel('in order for the aimbot to work YOU have to use the keybind, not the toggle')
