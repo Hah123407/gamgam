@@ -247,7 +247,7 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Aim = Window:AddTab('Aim'),
-	Hvh = Window:AddTab('HVH'),
+	HVH = Window:AddTab('HVH'),
 	Visuals = Window:AddTab('Visuals'),
 	Automation = Window:AddTab('Automation'),
    Mods = Window:AddTab('Mods'),
@@ -266,7 +266,7 @@ GB_Aimbot:AddDivider()
 GB_Aimbot:AddToggle('AimbotOnlyFOVVis', { Text = 'FOV Check', Default = false, Tooltip = 'Only aims at enemies within FOV'})
 GB_Aimbot:AddSlider('AimbotFOV', {Text = 'FOV', Default = 60, Min = 1, Max = 90, Rounding = 2, Compact = true})
 GB_Aimbot:AddToggle('AimbotShowFOV', { Text = 'Show FOV Circle', Default = false, Tooltip = 'Draw FOV Circle on screen'})
-GB_Aimbot:AddLabel('Amalgam.lua was made by Mad Weed Mechanic and special thank to Vinleo', true)
+GB_Aimbot:AddLabel('Amalgam was made by Mad Weed Mechanic and special thank to Vinleo', true)
 --GB_Aimbot:AddDivider() -- FINISH THIS!
 --GB_Aimbot:AddToggle('AimbotLegitMelee', { Text = 'Legit Melee', Default = true, Tooltip = 'Enable distance check for melee'})
 
