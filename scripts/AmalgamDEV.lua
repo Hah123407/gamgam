@@ -1,14 +1,3 @@
---[[
-    _____      __    __         __               __
-   / __(_)____/ /_  / /_  _____/ /_  ___  ____ _/ /_
-  / /_/ / ___/ __ \/ __ \/ ___/ __ \/ _ \/ __ `/ __/
- / __/ (__  ) / / / / / / /__/ / / /  __/ /_/ / /_
-/_/ /_/____/_/ /_/_/ /_/\___/_/ /_/\___/\__,_/\__/	v2
-18th February 2025
-
-Github is really retarded so the code looks weird with random spaces... idk why and i cant be bothered to fix it all.
-
-]]
 
 --sigma anticheat bypass
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f1fde88a51d2fc5fad5548db80a256c2.lua"))()
@@ -252,31 +241,38 @@ RemoveShit(RepStorage.Other.ScaryMonsters.Trooper:FindFirstChild("Highlight")) -
 
 RemoveShit = nil
 
-local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/refs/heads/main/'
+local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 
-local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
-local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
-local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-local Options = getgenv().Linoria.Options
-local Toggles = getgenv().Linoria.Toggles
+local Options = Library.Options
+local Toggles = Library.Toggles
 
+Library.ForceCheckbox = false -- Forces AddToggle to AddCheckbox
 Library.ShowToggleFrameInKeybinds = true -- Make toggle keybinds work inside the keybinds UI (aka adds a toggle to the UI). Good for mobile users (Default value = true)
-Library.ShowCustomCursor = true -- Toggles the Linoria cursor globaly (Default value = true)
-Library.NotifySide = "Left" -- Changes the side of the notifications globaly (Left, Right) (Default value = Left)
 
 local Window = Library:CreateWindow({
-	Title = 'FishhCheat v2',
-	Center = true,
-	AutoShow = true,
-	Resizable = true,
+	-- Set Center to true if you want the menu to appear in the center
+	-- Set AutoShow to true if you want the menu to appear when it is created
+	-- Set Resizable to true if you want to have in-game resizable Window
+	-- Set MobileButtonsSide to "Left" or "Right" if you want the ui toggle & lock buttons to be on the left or right side of the window
+	-- Set ShowCustomCursor to false if you don't want to use the Linoria cursor
+	-- NotifySide = Changes the side of the notifications (Left, Right) (Default value = Left)
+	-- Position and Size are also valid options here
+	-- but you do not need to define them unless you are changing them :)
+
+	Title = "Amalgam [DEV]",
+	Footer = "Typical Colors 2|| AMALGAM [DEV]",
+	Icon = ,
+	NotifySide = "Right",
 	ShowCustomCursor = true,
-	NotifySide = "Left",
-	TabPadding = 8,
-	MenuFadeTime = 0.2
 })
+
 
 local Tabs = {
 	Aim = Window:AddTab('Aim'),
+	HVH = Window:AddTab('HVH'),
 	Visuals = Window:AddTab('Visuals'),
     Mods = Window:AddTab('Mods'),
 	Automation = Window:AddTab('Automation'),
@@ -287,7 +283,7 @@ local Tabs = {
 local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
 GB_Aimbot:AddToggle('AimbotToggle', { Text = 'Aimbot', Default = true, Tooltip = 'Aims at enemies'}):AddKeyPicker('AimbotBind', { Default = 'None', NoUI = false, Mode = 'Always', Text = 'Aimkey' })
 GB_Aimbot:AddToggle('ProjAimbotToggle', { Text = 'Projectile Aimbot (BETA)', Default = true, Tooltip = '*Attempts* to predict player movement for projectile weapons\nUse hitbox expander for grenade launchers.'})
-GB_Aimbot:AddToggle('SilentAimbot', { Text = 'Silent', Default = false, Tooltip = 'Aimbot flicks will not be visible, serverside or clientside.\nWARNING : Might be detected, use at your own risk'}) 
+GB_Aimbot:AddToggle('SilentAimbot', { Text = 'Silent', Default = false, Tooltip = 'Aimbot flicks will not be visible, serverside or clientside.\nWARNING : Might be detected, use at your own risk', Default = false, Disabled = false, Visible = true, Risky = true}) 
 GB_Aimbot:AddDropdown("TargetPart", {Values = {'Head', 'UpperTorso', 'HumanoidRootPart'}, Default = 1, Multi = false, Text = "Aimbot Part"})
 GB_Aimbot:AddToggle('AimbotAutoShoot', { Text = 'Autoshoot', Default = false, Tooltip = 'Automatically shoots when aimbot finds a target'})
 GB_Aimbot:AddDivider()
@@ -297,7 +293,7 @@ GB_Aimbot:AddToggle('AimbotShowFOV', { Text = 'Show FOV Circle', Default = false
 --GB_Aimbot:AddDivider() -- FINISH THIS!
 --GB_Aimbot:AddToggle('AimbotLegitMelee', { Text = 'Legit Melee', Default = true, Tooltip = 'Enable distance check for melee'})
 GB_Aimbot:AddDivider()
-GB_Aimbot:AddLabel('Fishhcheat is a free script available only on GitHub and v3rmillion. Do not use any other links!\nMade by FishhHvH', true)
+GB_Aimbot:AddLabel('Amalgam Dev was a cheat made by Mad Weed Mechanic and given to special people', true)
 
 local GB_Hitbox = Tabs.Aim:AddRightGroupbox('Hitbox')
 GB_Hitbox:AddToggle('HBEToggle', { Text = 'Hitbox Expander', Default = false, Tooltip = 'Toggle hitbox expanding'}):AddKeyPicker('HBEBind', { Default = 'None', NoUI = false, Mode = 'Always', Text = 'HBE Key' })
@@ -311,6 +307,15 @@ local GB_Ignore = Tabs.Aim:AddRightGroupbox('Ignore')
 GB_Ignore:AddToggle('AimIgnoreInvis', {Text = 'Ignore Invisible', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 GB_Ignore:AddToggle('AimIgnoreFriends', {Text = 'Ignore Friends/Ignored', Default = true, Tooltip = '(applies for both HBE and aimbot)'})
 
+local GB_HVH = Tabs.HVH:AddLeftGroupbox('HVH')
+GB_HVH:AddLabel('sory but no double tap')
+GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
+GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
+GB_HVH:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
+GB_HVH:AddDivider()
+GB_HVH:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
+GB_HVH:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
+GB_HVH:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
 
 local GB_ESP = Tabs.Visuals:AddLeftGroupbox('ESP')
 local GB_View = Tabs.Visuals:AddRightGroupbox('View')
@@ -390,12 +395,12 @@ GB_WeaponMods:AddToggle('NoSpread', { Text = 'Reduced Spread', Default = false, 
 --GB_WeaponMods:AddToggle('InfDamage', { Text = 'Infinite Damage', Default = false, Tooltip = 'All weapons insta-kill'})
 GB_WeaponMods:AddToggle('InfAmmo', { Text = 'Infinite Ammo', Default = false, Tooltip = 'Infinite ammo on all weapons'})
 GB_WeaponMods:AddToggle('InfCloak', { Text = 'Infinite Cloak', Default = false, Tooltip = 'Infinite cloak for Agent'})
---GB_WeaponMods:AddToggle('InfCharge', { Text = 'Infinite Shield Charge', Default = false, Tooltip = 'Infinite charge for Annihilator shields'}) -- Possibly detected
+GB_WeaponMods:AddToggle('InfCharge', { Text = 'Infinite Shield Charge', Default = false, Tooltip = 'Infinite charge for Annihilator shields', Default = false, Disabled = false, Visible = true, Risky = true}) -- Possibly detected
 GB_WeaponMods:AddToggle('MaxBuildings', { Text = 'Instant LVL 3 Buildings', Default = false, Tooltip = "Mechanic buildings will instantly be lvl 3 once deployed"})
---[[GB_WeaponMods:AddToggle('FirerateChanger', { Text = 'Firerate Modifier', Default = false, Tooltip = 'Modify the firerate of most weapons'})
+GB_WeaponMods:AddToggle('FirerateChanger', { Text = 'Firerate Modifier', Default = false, Tooltip = 'Modify the firerate of most weapons', Default = false, Disabled = false, Visible = true, Risky = true})
 GB_WeaponMods:AddSlider('FirerateAmount', {Text = 'Firerate', Default = 0.2, Min = 0.1, Max = 1, Rounding = 2, Compact = true})
 -- fakeaxis fight me irl
-]]
+
 
 Toggles.AlwaysBackstab:OnChanged(function() -- Always Backstab
 	if Toggles.AlwaysBackstab.Value then
@@ -444,7 +449,6 @@ LegacyLocalVariables.cloakleft:GetPropertyChangedSignal('Value'):Connect(functio
         LegacyLocalVariables.cloakleft.Value = 10
     end
 end)
---[[
 LegacyLocalVariables.chargeleft:GetPropertyChangedSignal('Value'):Connect(function()
     if Toggles.InfCharge.Value then
 		if LegacyLocalVariables.Held2.Value then
@@ -460,17 +464,8 @@ LegacyLocalVariables.Held2:GetPropertyChangedSignal("Value"):Connect(function() 
 		LegacyLocalVariables.chargeleft.Value = 100
 	end
 end)
-]]
 
-local GB_Auto = Tabs.Automation:AddLeftGroupbox('Automation') 
-GB_Auto:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'Automatically uber when under health %'})
-GB_Auto:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
-GB_Auto:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
-GB_Auto:AddDivider()
-GB_Auto:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
-GB_Auto:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
-GB_Auto:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
-GB_Auto:AddDivider()
+local GB_Auto = Tabs.Automation:AddLeftGroupbox('Automation')
 GB_Auto:AddToggle('AutoAirblast', { Text = 'Auto Airblast', Default = false, Tooltip = 'Automatically airblast projectiles'})
 GB_Auto:AddToggle('AutoAirblastExt', { Text = 'Extinguish teammates', Default = false, Tooltip = 'Auto Airblast will extinguish teammates'})
 
@@ -528,7 +523,7 @@ GB_Removals:AddToggle('NoSniperScope', {Text = 'No Rifle Scope', Default = false
 GB_Removals:AddToggle('NoSniperBeam', {Text = 'No Rifle Beam', Default = false, Tooltip = "Block the remote for the rifle's beam (serversided)"})
 GB_Removals:AddToggle('NoUndisguise', {Text = 'No Undisguising After Attack', Default = false, Tooltip = 'Block the remote for undisguising'})
 GB_Removals:AddToggle('NoSelfDamage', {Text = 'No Self Melee Damage', Default = false, Tooltip = 'No more self damage for certain melees'})
---GB_Removals:AddToggle('InstantRespawn', {Text = 'No Respawn Cooldown', Default = false, Tooltip = 'aka Instant Respawn'}) Detected probably?
+GB_Removals:AddToggle('InstantRespawn', {Text = 'No Respawn Cooldown', Default = false, Tooltip = 'aka Instant Respawn', Default = false, Disabled = false, Visible = true, Risky = true}) --Detected probably?
 
 Toggles.NoSniperScope:OnChanged(function() -- i need to fix this
 	if Toggles.NoSniperScope.Value then
@@ -560,9 +555,9 @@ LegacyLocalVariables.died:GetPropertyChangedSignal('Value'):Connect(function()
 		if Toggles.OneLife.Value then
 			game:GetService("TeleportService"):Teleport(16167003515, LocalPlayer) -- lmao
 		end
-		--if Toggles.InstantRespawn.Value then -- Instant Respawn
-		--	RepStorage.Events.LoadCharacter:FireServer()
-		--end
+		if Toggles.InstantRespawn.Value then -- Instant Respawn
+			RepStorage.Events.LoadCharacter:FireServer()
+		end
 		if Toggles.Deathsay.Value then -- Deathsay
 			RepStorage.Events.ChatMessage:FireServer(Deathsay[math.random(1, #Deathsay)], false)
 		end
@@ -615,60 +610,58 @@ task.spawn(function()
 	end
 end)
 
-Library:SetWatermarkVisibility(true)
 
-local FrameTimer = tick()
-local FrameCounter = 0;
-local FPS = 60;
-
-local Stats = game:GetService('Stats')
-
-local WatermarkConnection = RunService.RenderStepped:Connect(function()
-	FrameCounter = FrameCounter + 1; -- cuz of moonsec being retarded
-	Ping = Stats.Network.ServerStatsItem['Data Ping']:GetValue()
-
-	if (tick() - FrameTimer) >= 1 then
-		FPS = FrameCounter;
-		FrameTimer = tick();
-		FrameCounter = 0;
-	end;
-	if WatermarkVisible then
-		Library:SetWatermark(('FishhCheat v2 | %s fps | %s ms'):format(
-			math.floor(FPS),
-			math.floor(Ping)
-		));
-	end
-end);
-
-Library.KeybindFrame.Visible = true;
-
-Library:OnUnload(function()
-	WatermarkConnection:Disconnect()
-	Library.Unloaded = true
-end)
 
 -- UI Settings
 local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
-MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
-MenuGroup:AddToggle("ShowWatermark", {
-	Text = "Show Cheat Watermark",
-	Default = true, 
-	Tooltip = "Shows the cheat watermark. Duh", 
-	Callback = function(Value)
-		WatermarkVisible = Value
-		Library:SetWatermarkVisibility(Value)
-	end
+MenuGroup:AddToggle("KeybindMenuOpen", {
+	Default = Library.KeybindFrame.Visible,
+	Text = "Open Keybind Menu",
+	Callback = function(value)
+		Library.KeybindFrame.Visible = value
+	end,
 })
-MenuGroup:AddToggle("ShowKeybinds", {
-	Text = "Show Keybinds Menu",
-	Default = true, 
-	Tooltip = "Shows a menu with all keybinds", 
+MenuGroup:AddToggle("ShowCustomCursor", {
+	Text = "Custom Cursor",
+	Default = true,
 	Callback = function(Value)
-		Library.KeybindFrame.Visible = Value
-	end
+		Library.ShowCustomCursor = Value
+	end,
 })
+MenuGroup:AddDropdown("NotificationSide", {
+	Values = { "Left", "Right" },
+	Default = "Right",
+
+	Text = "Notification Side",
+
+	Callback = function(Value)
+		Library:SetNotifySide(Value)
+	end,
+})
+MenuGroup:AddDropdown("DPIDropdown", {
+	Values = { "50%", "65%" "75%", "100%", "125%", "150%", "175%", "200%" },
+	Default = "100%",
+
+	Text = "DPI Scale",
+
+	Callback = function(Value)
+		Value = Value:gsub("%%", "")
+		local DPI = tonumber(Value)
+
+		Library:SetDPIScale(DPI)
+	end,
+})
+MenuGroup:AddDivider()
+MenuGroup:AddLabel("Menu bind")
+	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+
+MenuGroup:AddButton("Unload", function()
+	Library:Unload()
+end)
+
+Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
 
 
 Library.ToggleKeybind = Options.MenuKeybind
@@ -680,8 +673,8 @@ SaveManager:IgnoreThemeSettings()
 
 SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
-ThemeManager:SetFolder('FishhCheat_v2')
-SaveManager:SetFolder('FishhCheat_v2/TC2')
+ThemeManager:SetFolder('AMALGAM_DEV')
+SaveManager:SetFolder('AMALGAM_DEV/TC2')
 
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
 
@@ -1685,11 +1678,11 @@ end))
 local index -- Wallbang
 index = hookmetamethod(game, "__index", newcclosure(function(self, key)
     if not Library.Unloaded then
-		--[[if key == "Value" and self:IsA("ValueBase") and not checkcaller() then
+		 if key == "Value" and self:IsA("ValueBase") and not checkcaller() then
 			if self.Name:lower():match("firerate") and Toggles.FirerateChanger.Value and not self.Parent:FindFirstChild("Projectile") then
 				return Options.FirerateAmount.Value
 			end
-		end]]
+		end
         if Toggles.Wallbang.Value and key == "Clips" then
             return workspace.Map
         end
