@@ -616,13 +616,8 @@ end)
 local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
-MenuGroup:AddToggle("KeybindMenuOpen", {
-	Default = Library.KeybindFrame.Visible,
-	Text = "Open Keybind Menu",
-	Callback = function(value)
-		Library.KeybindFrame.Visible = value
-	end,
-})
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
+
 MenuGroup:AddToggle("ShowCustomCursor", {
 	Text = "Custom Cursor",
 	Default = true,
@@ -641,7 +636,7 @@ MenuGroup:AddDropdown("NotificationSide", {
 	end,
 })
 MenuGroup:AddDropdown("DPIDropdown", {
-	Values = { "50%", "65%" "75%", "100%", "125%", "150%", "175%", "200%" },
+	Values = { "50%", "65%", "75%", "80%", "85", "100%", "125%", "150%", "175%", "200%" },
 	Default = "100%",
 
 	Text = "DPI Scale",
@@ -653,15 +648,16 @@ MenuGroup:AddDropdown("DPIDropdown", {
 		Library:SetDPIScale(DPI)
 	end,
 })
-MenuGroup:AddDivider()
-MenuGroup:AddLabel("Menu bind")
-	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
 
-MenuGroup:AddButton("Unload", function()
-	Library:Unload()
-end)
-
-Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
+MenuGroup:AddButton('Unload', function() Library:Unload() end)
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = true, Text = 'Menu keybind' })
+MenuGroup:AddToggle("KeybindMenuOpen", {
+	Default = Library.KeybindFrame.Visible,
+	Text = "Open Keybind Menu",
+	Callback = function(value)
+		Library.KeybindFrame.Visible = value
+	end,
+})
 
 
 Library.ToggleKeybind = Options.MenuKeybind
