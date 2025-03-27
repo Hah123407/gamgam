@@ -855,7 +855,7 @@ function Visuals(Player)
             Debug_LocalVelocity.Text = string.format("Client Velocity : %i ( %i %i %i )", Velocity.Magnitude, Velocity.X, Velocity.Y, Velocity.Z)
             Debug_LocalPosition.Text = string.format("Client Position : ( %i %i %i )", Position.X, Position.Y, Position.Z)
         end
-    end)
+    end), 
 
     -- Bounding Boxes
     local fillBox = Drawing.new("Square")
