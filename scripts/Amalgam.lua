@@ -1,7 +1,6 @@
 
 repeat task.wait() until game:IsLoaded()
 
-
 -- asger keeps breaking his anticheat bypass so enjoy possibly detected script? :steamhappy:
 --loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f1fde88a51d2fc5fad5548db80a256c2.lua"))()
 
