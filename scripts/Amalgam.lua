@@ -246,7 +246,7 @@ local Window = Library:CreateWindow({
 
 
 local Tabs = {
-	Aim = Window:AddTab('Aim'),
+	Aim = Window:AddTab('Aim', "locate"),
 	HVH = Window:AddTab('HVH'),
 	Visuals = Window:AddTab('Visuals', 'user'),
 	Automation = Window:AddTab('Automation'),
