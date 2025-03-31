@@ -247,11 +247,11 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 	Aim = Window:AddTab('Aim', "locate"),
-	HVH = Window:AddTab('HVH'),
+	HVH = Window:AddTab('HVH', "expand"),
 	Visuals = Window:AddTab('Visuals', 'user'),
-	Automation = Window:AddTab('Automation'),
+	Automation = Window:AddTab('Automation', 'bot'),
    Mods = Window:AddTab('Mods'),
-	Misc = Window:AddTab('Misc'),
+	Misc = Window:AddTab('Misc', 'box'),
 	['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
