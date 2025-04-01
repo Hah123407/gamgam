@@ -250,9 +250,9 @@ local Tabs = {
 	HVH = Window:AddTab('HVH', "expand"),
 	Visuals = Window:AddTab('Visuals', 'user'),
 	Automation = Window:AddTab('Automation', 'bot'),
-   Mods = Window:AddTab('Mods'),
+   Mods = Window:AddTab('Mods', 'user-cog'),
 	Misc = Window:AddTab('Misc', 'box'),
-	['UI Settings'] = Window:AddTab('UI Settings'),
+	['UI Settings'] = Window:AddTab('Configuration', 'settings-2'),
 }
 
 local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
