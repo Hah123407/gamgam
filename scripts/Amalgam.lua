@@ -243,6 +243,19 @@ local Window = Library:CreateWindow({
 	ShowCustomCursor = true,
 })
 
+Library:Notify({
+    Title = "loading...",
+    Description = "please wait",
+    Time = 10, -- Duration in seconds
+    SoundId = 3320590485 -- Optional sound ID
+})
+
+Library:Notify({
+    Title = "loaded",
+    Description = "Enjoy :)",
+    Time = 5, -- Duration in seconds
+    SoundId = 12222253 -- Optional sound ID
+})
 
 
 local Tabs = {
