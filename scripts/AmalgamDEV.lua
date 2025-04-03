@@ -149,58 +149,23 @@ local Projectiles = { -- pasted from bibulus for convenience
 }
 
 local Killsay = {
-	"N00b down",
-	"I've yet to meet one that can outsmart bullet.",
-	'We call that "skill" around here boyo.',
-	"EZ",
-	"You must love that respawn timer.",
-	"Hey, sometimes your opponent is just having a good day",
-	"r u mobile player?",
-	"The idiot store called, they're running out of YOU!",
-	"Votekick by pressing M+9!",
-	"Go to sleep.",
-	"you are DED! not big surprise.",
-	"ggez no re",
-	"Went to n00b town, everyone knew your name."
+        "You were given time, You were Given orders, And yet i still find This game unprepared for the arrival of the Bibulus Empire",
+	"I am {{user}}. I have never failed to assimilate a chosen planet, no matter its strength. If you choose to oppose me, you will not survive.",
+	"I should do this now--don’t know when I’ll get this chance again. I want to thank you, {victim}.... Really. From the bottom of my heart. It’s not often that I get to cut loose like this. I mean really cut loose like I have here. Usually, there are so many mission parameters. Don’t destroy this. Keep this person alive. So whatever you did to piss us off--thank you. This has been fun.",
+	"Right now, Fishhvh would be telling you about how the Bibulus Empire would turn this Game into a utopia. he’d tell you you’re a fool to try and prevent this—that we would be helping the people you believe you are protecting from us. I will not tell you any such thing. The truth is, I want to spread the Bibulus Empire."
 }
 
 local Deathsay = {
-	"That wasn't supposed to happen",
-	"HACKER",
-	"CHEATER CHEATER CHEATER",
-	"reported to rolve developers",
-	"Next time's the charm.",
-	"This is rather embarrasing.",
-	"YEEEEOUWCH",
-	"It appears our team's doctor has quit."	
+	"I'am So Lonely, All The Other Hackers Are Scared Of me, No One Wants to Talk to me, No One Wants To Be My Friend", 
+	"They Think I'am Unstable, They Send Me Game to Game, Committing Atrocities In their name,", 
+	"And As I Get Better At It, They Fear Me More And More, I'am A Victim Of My Own Success... {{User}}. I Don't Even Get A Real Name,", 
+	"Only A Purpose, i'am Capable Of So Much More And No One See's it, Some Days I Feel So Alone I Could Cry,", 
+	"But I Don't, I Never Do, What Would Be The Point? Not A Single Person In The Entire Universe Would Care, Take It To Your Grave."
 }
 
 
 local ChatSpam = {
-	"Not to worry team, I'm a garbage collector. I'm used to carrying trash.",
-	"GET GOOD GET FISHHCHEAT",
-	"FISHHCHEAT - ONE STEP AHEAD OF THE GAME",
-	"I'm not hacking, i am just cheating.",
-	"*JAMACIAN SMILE ACTIVATED* those who know...",
-	"XATAWARE BEST HACK TC2 2023",
-	"I bought a property in Egypt and what they do for you is they give you the property",
-	"wait... why are we playing a chinese ripoff of TF2?",
-	"FISH FOR PRESIDENT 2029",
-	"--- SIGMAHACK EXECUTED ---",
-	"game:GetService('Byfron'):Destroy() EZEZEZ BYPASS",
-	"ain't no party like a bibulus party",
-	"For every Fishhcheat purchase, we donate to Israel.",
-	":3",
-	"The FitnessGram Pacer test, ever heard of it?",
-	"NONAMES RISE UP",
-	"INJECTING ESTROGEN.DLL",
-	":steamhappy:",
-	":troll:",
-	"give cool role pls",
-	"hey chatgpt how do i install tc2 hack",
-	"Sponsored by Omegatronic",
-	"GOD TYCOON > TC2",
-	"Exploit-er? I just met her!"
+	"Stand Ready For My Arrival, Worm"
 }
 
 
@@ -264,21 +229,20 @@ local Window = Library:CreateWindow({
 	-- but you do not need to define them unless you are changing them :)
 
 	Title = "Amalgam [DEV]",
-	Footer = "Typical Colors 2|| AMALGAM [DEV]",
+	Footer = "Typical Colors 2 || AMALGAM [DEV]",
 	Icon = 0,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
 })
 
-
 local Tabs = {
-	Aim = Window:AddTab('Aim'),
-	HVH = Window:AddTab('HVH'),
-	Visuals = Window:AddTab('Visuals'),
-    Mods = Window:AddTab('Mods'),
-	Automation = Window:AddTab('Automation'),
-	Misc = Window:AddTab('Misc'),
-	['UI Settings'] = Window:AddTab('UI Settings'),
+	Aim = Window:AddTab('Aim', "locate"),
+	HVH = Window:AddTab('HVH', "expand"),
+	Visuals = Window:AddTab('Visuals', 'user'),
+	Automation = Window:AddTab('Automation', 'bot'),
+   Mods = Window:AddTab('Mods', 'user-cog'),
+	Misc = Window:AddTab('Misc', 'box'),
+	['UI Settings'] = Window:AddTab('Configuration', 'settings-2'),
 }
 
 local GB_Aimbot = Tabs.Aim:AddLeftGroupbox('Aimbot')
@@ -294,7 +258,7 @@ GB_Aimbot:AddToggle('AimbotShowFOV', { Text = 'Show FOV Circle', Default = false
 --GB_Aimbot:AddDivider() -- FINISH THIS!
 --GB_Aimbot:AddToggle('AimbotLegitMelee', { Text = 'Legit Melee', Default = true, Tooltip = 'Enable distance check for melee'})
 GB_Aimbot:AddDivider()
-GB_Aimbot:AddLabel('Amalgam Dev was a cheat made by Mad Weed Mechanic and given to special people', true)
+GB_Aimbot:AddLabel('Amalgam Dev was a cheat made by isopropyl alcohol and given to special people', true)
 
 local GB_Hitbox = Tabs.Aim:AddRightGroupbox('Hitbox')
 GB_Hitbox:AddToggle('HBEToggle', { Text = 'Hitbox Expander', Default = false, Tooltip = 'Toggle hitbox expanding'}):AddKeyPicker('HBEBind', { Default = 'None', NoUI = false, Mode = 'Always', Text = 'HBE Key' })
@@ -314,7 +278,7 @@ GB_HVH:AddToggle('AutoUber', { Text = 'Auto Uber', Default = false, Tooltip = 'A
 GB_HVH:AddSlider('AutoUberPerc', {Text = 'Percentage', Default = 40, Min = 5, Max = 95, Rounding = 2, Compact = true})
 GB_HVH:AddDropdown("AutoUberCond", {Values = {"Only care about me", "Only care about players I heal", "Both"}, Default = 3, Multi = false, Text = "Condition"})
 GB_HVH:AddDivider()
-GB_HVH:AddToggle('AutoDetonate', { Text = 'Auto Detonate', Default = false, Tooltip = 'Automatically detonate stickies'})
+GB_HVH:AddToggle('AutoDetonate', { Text = 'Auto DetoalcoholDefault = false, Tooltip = 'Automatically detonate stickies'})
 GB_HVH:AddToggle('AutoDetonateBld', { Text = 'Include Buildings', Default = false, Tooltip = 'Auto Detonate will detonate for mechanic buildings'})
 GB_HVH:AddSlider('AutoDetonateRange', {Text = 'Range', Default = 9.125, Min = 9, Max = 20, Rounding = 2, Compact = true})
 
@@ -343,9 +307,9 @@ GB_ESP:AddSlider('ViewTracerDistance', {Text = 'View Tracer Distance', Default =
 GB_ESP:AddSlider('TextSize', {Text = 'Text Size', Default = 13, Min = 0, Max = 50, Rounding = 0, Suffix = '', Compact = false})
 GB_ESP:AddSlider('TextFont', {Text = 'Text Font', Default = 1, Min = 0, Max = 3, Rounding = 0, Suffix = '', Compact = false})
 GB_View:AddToggle('customfov', { Text = 'FOV Modifications', Default = true, Tooltip = 'Toggles FOV Modifications'})
-GB_View:AddSlider('customfovamount', { Text = '', Default = 90, Min = 0, Max = 120, Rounding = 0, Suffix = '°/120°', Compact = true})
-GB_World:AddToggle('ColorCorrectionToggle', { Text = 'Color Correction', Default = true, Tooltip = 'Overlay color on screen'}):AddColorPicker('ColorCorrection', {Default = Color3.fromRGB(153, 90, 198), Title = 'Color'})
-GB_World:AddToggle('NightMode', { Text = 'Night Mode', Default = true, Tooltip = 'Night mode!'})
+GB_View:AddSlider('customfovamount', { Text = '', Default = 100, Min = 0, Max = 190, Rounding = 0, Suffix = '°/190°', Compact = true})
+GB_World:AddToggle('ColorCorrectionToggle', { Text = 'Color Correction', Default = false, Tooltip = 'Overlay color on screen'}):AddColorPicker('ColorCorrection', {Default = Color3.fromRGB(153, 90, 198), Title = 'Color'})
+GB_World:AddToggle('NightMode', { Text = 'Night Mode', Default = false, Tooltip = 'Night mode!'})
 GB_World:AddDropdown("LightingTechnology", {Values = {'Voxel', 'ShadowMap', 'Legacy', 'Future', 'Compatibility'}, Default = 2, Multi = false, Text = "Lighting Technology"})
 GB_World:AddDivider()
 GB_World:AddToggle('ThirdPerson', { Text = 'Third Person', Default = true, Tooltip = 'Toggle on/off using F5 key'})
@@ -637,7 +601,7 @@ MenuGroup:AddDropdown("NotificationSide", {
 	end,
 })
 MenuGroup:AddDropdown("DPIDropdown", {
-	Values = { "50%", "65%", "75%", "80%", "85", "100%", "125%", "150%", "175%", "200%" },
+	Values = { "50%", "65%", "75%", "80%", "85%", "100%", "125%", "150%", "175%", "200%" },
 	Default = "100%",
 
 	Text = "DPI Scale",
