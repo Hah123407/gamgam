@@ -236,8 +236,8 @@ local Window = Library:CreateWindow({
 	-- Position and Size are also valid options here
 	-- but you do not need to define them unless you are changing them :)
 
-	Title = "AMALGAM [WIP]",
-	Footer = "Typical Colors 2 | AMALGAM V1",
+	Title = "Calm_kontol.xyz",
+	Footer = "Typical Colors 2 | Kontol_Tolo.xyz",
 	Icon = 136906639949975,
 	NotifySide = "Right",
 	ShowCustomCursor = true,
